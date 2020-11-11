@@ -1,16 +1,25 @@
-name: Simple CI
-
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
-  run-ci:
+  frontend:
     name: Build Frontend
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
     - run: npm install
     - run: npm run lint
     - run: make
+
+  ios:
+    # follows https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-mobile#ios
+    name: Build iOS app
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm install
+    - run: |
+        cd ios
+        pod install
+        cd ..
+    - run: react-native run-ios --device
+    - run: react-native log-ios
