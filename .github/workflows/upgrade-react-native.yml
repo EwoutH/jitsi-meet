@@ -9,6 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npx react-native upgrade
+    - run: npm install
     - uses: peter-evans/create-pull-request@v3
       with:
         title: "Upgrade React Native"
