@@ -1,0 +1,16 @@
+on:
+  schedule:
+    - cron: 0 7 * * 1
+  push: # for testing
+
+jobs:
+  upgrade-react-native:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npx react-native upgrade
+    - uses: peter-evans/create-pull-request@v3
+      with:
+        title: "Upgrade React Native"
+        branch: upgrade-react-native
+        commit-message: "[Bot] Upgrade React Native"
