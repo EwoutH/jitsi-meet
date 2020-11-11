@@ -81,7 +81,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
     if (!rootProject.ext.libreBuild) {
-        implementation 'com.google.android.gms:play-services-auth:16.0.1'
+        implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
         // Firebase
         //  - Crashlytics
